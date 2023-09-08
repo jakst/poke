@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { pokemonListResultSchema } from "./schemas"
+import { pokemonDetailsResultSchema, pokemonListResultSchema } from "./schemas"
 
 /**
  * Fetches a request and validates the result again the passed in resultSchema.
@@ -19,6 +19,9 @@ async function get<ResultSchema extends z.ZodSchema>(
 const getPokemonList = () =>
 	get("https://pokeapi.co/api/v2/pokemon", pokemonListResultSchema)
 
+const getPokemonDetails = (url: string) => get(url, pokemonDetailsResultSchema)
+
 export const api = {
 	getPokemonList,
+	getPokemonDetails,
 }
