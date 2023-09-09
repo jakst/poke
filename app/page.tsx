@@ -1,6 +1,6 @@
 import { api } from "@/lib/api"
+import { ListItem } from "@/lib/components/ListItem"
 import { flex } from "@/pokestyle/patterns"
-import Image from "next/image"
 
 export default async function Home() {
 	const pokemonList = await api.getPokemonList()
@@ -26,21 +26,14 @@ export default async function Home() {
 				})}
 			>
 				{pokemonListWithDetails.map((pokemon, index) => (
-					<div key={pokemon.name}>
-						{pokemon.name}
-
-						{pokemon.sprites.front_default && (
-							<Image
-								src={pokemon.sprites.front_default}
-								alt={`${pokemon.name} pictured from the front`}
-								width="192"
-								height="192"
-								// Make the browser prioritize the first ten images
-								// as they are likely to be above the fold
-								priority={index < 10}
-							/>
-						)}
-					</div>
+					<ListItem
+						key={pokemon.name}
+						name={pokemon.name}
+						imageUrl={pokemon.sprites.front_default}
+						// Make the browser prioritize the first ten images
+						// as they are likely to be above the fold
+						priority={index < 10}
+					/>
 				))}
 			</div>
 		</main>
