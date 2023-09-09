@@ -1,25 +1,24 @@
 import Image from "next/image"
+import { getImageUrlFromPokemonDetailsUrl } from "../getPokemonAvatarUrl"
 
 interface Props {
 	name: string
-	imageUrl?: string | null
+	detailsUrl: string
 	priority: boolean
 }
 
-export function ListItem({ name, imageUrl, priority }: Props) {
+export function ListItem({ name, detailsUrl, priority }: Props) {
 	return (
 		<div>
 			{name}
 
-			{imageUrl && (
-				<Image
-					src={imageUrl}
-					alt={`${name} pictured from the front`}
-					width="192"
-					height="192"
-					priority={priority}
-				/>
-			)}
+			<Image
+				src={getImageUrlFromPokemonDetailsUrl(detailsUrl)}
+				alt={`${name} pictured from the front`}
+				width="192"
+				height="192"
+				priority={priority}
+			/>
 		</div>
 	)
 }
