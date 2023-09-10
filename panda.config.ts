@@ -12,7 +12,23 @@ export default defineConfig({
 
 	// Useful for theme customization
 	theme: {
-		extend: {},
+		extend: {
+			keyframes: {
+				rotation: {
+					"0%": {
+						transform: "rotate(0deg)",
+					},
+					"100%": {
+						transform: "rotate(360deg)",
+					},
+				},
+				animloader: {
+					"50%": {
+						transform: "scale(1) translate(-50%, -50%)",
+					},
+				},
+			},
+		},
 	},
 
 	// The output directory for your css system
