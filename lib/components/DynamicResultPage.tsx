@@ -16,7 +16,7 @@ export function DynamicResultPage({ url }: Props) {
 
 	const [showNextPage, setShowNextPage] = useState(false)
 
-	const loadMoreTriggerRef = useRef<HTMLDivElement>(null)
+	const loadMoreTriggerRef = useRef<HTMLAnchorElement>(null)
 
 	useEffect(() => {
 		if (!loadMoreTriggerRef.current || !data) return
@@ -39,11 +39,11 @@ export function DynamicResultPage({ url }: Props) {
 
 	return (
 		<>
-			{/* When this element is scrolled into the viewport, we start loading the next page */}
-			<div ref={loadMoreTriggerRef} className={css({ visibility: "hidden" })} />
-
-			{data.results.map((pokemon) => (
+			{data.results.map((pokemon, i) => (
 				<ListItem
+					// When the first item of the page is scrolled into
+					// the viewport, we start loading the next page.
+					ref={i === 0 ? loadMoreTriggerRef : undefined}
 					key={pokemon.name}
 					name={pokemon.name}
 					detailsUrl={pokemon.url}

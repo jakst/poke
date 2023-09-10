@@ -1,5 +1,7 @@
+import { css } from "@/pokestyle/css"
 import Image from "next/image"
 import Link from "next/link"
+import { forwardRef } from "react"
 import { getIdFromPokemonDetailsUrl, getImageUrlFromId } from "../url-utils"
 
 interface Props {
@@ -8,13 +10,22 @@ interface Props {
 	priority?: boolean
 }
 
-export function ListItem({ name, detailsUrl, priority = false }: Props) {
-	const id = getIdFromPokemonDetailsUrl(detailsUrl)
+export const ListItem = forwardRef<HTMLAnchorElement, Props>(
+	({ name, detailsUrl, priority = false }, ref) => {
+		const id = getIdFromPokemonDetailsUrl(detailsUrl)
 
-	return (
-		<Link href={`/${id}`}>
-			<div>
-				{name}
+		return (
+			<Link
+				ref={ref}
+				href={`/${id}`}
+				className={css({
+					bgGradient: "to-br",
+					gradientFrom: "#fff5",
+					gradientTo: "#fff2",
+					borderRadius: "2xl",
+				})}
+			>
+				<span className={css({})}>{name}</span>
 
 				<Image
 					src={getImageUrlFromId(id)}
@@ -23,7 +34,9 @@ export function ListItem({ name, detailsUrl, priority = false }: Props) {
 					height="192"
 					priority={priority}
 				/>
-			</div>
-		</Link>
-	)
-}
+			</Link>
+		)
+	},
+)
+
+ListItem.displayName = "ListItem"
