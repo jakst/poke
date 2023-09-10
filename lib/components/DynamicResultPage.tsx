@@ -69,30 +69,26 @@ function LoadingIndicator() {
 			{/* CSS Loader taken from https://cssloaders.github.io/ */}
 			<span
 				className={css({
-					width: "48px",
-					height: "48px",
-					display: "block",
-					margin: "15px auto",
-					position: "relative",
-					color: "#FFF",
-					boxSizing: "border-box",
+					width: "3rem",
+					height: "3rem",
 					animation: "rotation 1s linear infinite",
 					"&::after, &::before": {
 						content: "''",
-						boxSizing: "border-box",
 						position: "absolute",
-						width: "24px",
-						height: "24px",
+						width: "1.5rem",
+						height: "1.5rem",
 						top: "50%",
 						left: "50%",
-						transform: "scale(0.5) translate(0, 0)",
-						backgroundColor: "yellow.400",
 						borderRadius: "50%",
 						animation: "animloader 1s infinite ease-in-out",
 					},
 					"&::before": {
-						backgroundColor: "red.400",
-						transform: "scale(0.5) translate(-48px, -48px)",
+						bg: "yellow.400",
+						transform: "scale(0.5) translate(-3rem, -3rem)",
+					},
+					"&::after": {
+						bg: "red.500",
+						transform: "scale(0.5) translate(0, 0)",
 					},
 				})}
 			/>
