@@ -20,7 +20,8 @@ const getPokemonList = (
 	url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`,
 ) => get(url, pokemonListResultSchema)
 
-const getPokemonDetails = (url: string) => get(url, pokemonDetailsResultSchema)
+const getPokemonDetails = (id: string) =>
+	get(`https://pokeapi.co/api/v2/pokemon/${id}`, pokemonDetailsResultSchema)
 
 export const api = {
 	getPokemonList,

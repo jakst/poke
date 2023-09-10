@@ -13,6 +13,6 @@ export function getIdFromPokemonDetailsUrl(url: string) {
  * Returns an URL to an image of the pokemon with that ID.
  * This let's us show images of the pokemon in lists without having to fetch the details of each pokemon.
  */
-export function getImageUrlFromId(id: string) {
+export function getImageUrlFromId(id: string | number) {
 	return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 }
