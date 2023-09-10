@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { getImageUrlFromPokemonDetailsUrl } from "../getPokemonAvatarUrl"
+import { getIdFromPokemonDetailsUrl, getImageUrlFromId } from "../url-utils"
 
 interface Props {
 	name: string
@@ -8,12 +8,14 @@ interface Props {
 }
 
 export function ListItem({ name, detailsUrl, priority = false }: Props) {
+	const id = getIdFromPokemonDetailsUrl(detailsUrl)
+
 	return (
 		<div>
 			{name}
 
 			<Image
-				src={getImageUrlFromPokemonDetailsUrl(detailsUrl)}
+				src={getImageUrlFromId(id)}
 				alt={`${name} pictured from the front`}
 				width="192"
 				height="192"
