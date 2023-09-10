@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## About the project
+
+This is a a Pokedex application, consuming the https://pokeapi.co/docs/v2#pokemon API. It lets you browse through all pokemons available through the API.
 
 ## Getting Started
 
-First, run the development server:
+Install all dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+```
+
+Run the development server
+
+```bash
 pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Other actions
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Format the whole repo with prettier
 
-## Learn More
+```bash
+pnpm format
+```
 
-To learn more about Next.js, take a look at the following resources:
+Lint the repo
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm lint
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Type check
 
-## Deploy on Vercel
+```bash
+pnpm tsc
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Built with
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is built with the following technologies
+
+- [Next.js](https://nextjs.org/) with React Server Components
+- [Panda CSS](https://panda-css.com/) for styling
+- [SWR](https://swr.vercel.app/) for client side data fetching
+- [Zod](https://zod.dev/) for schema parsing / validation
