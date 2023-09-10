@@ -1,9 +1,9 @@
 import { api } from "@/lib/api"
+import { NavigateBack } from "@/lib/components/NavigateBack"
 import { getImageUrlFromId } from "@/lib/url-utils"
 import { css } from "@/pokestyle/css"
 import { container, hstack, wrap } from "@/pokestyle/patterns"
 import Image from "next/image"
-import Link from "next/link"
 
 interface Props {
 	params: {
@@ -62,25 +62,16 @@ export default async function Details({ params }: Props) {
 				)}
 			</main>
 
-			<Link href="/" className={styles.backLink}>
-				<span className={styles.backArrow}>⇦</span> Back
-			</Link>
+			<NavigateBack className={styles.backLink} />
 		</>
 	)
 }
 
 const styles = {
-	backArrow: css({
-		fontSize: "2xl",
-	}),
-
-	backLink: hstack({
+	backLink: css({
 		position: "fixed",
 		left: "3",
 		top: "1",
-
-		color: "red.50",
-		fontWeight: "600",
 	}),
 
 	badge: css({
