@@ -8,19 +8,10 @@ export default async function Home() {
 	const pokemonList = await api.getPokemonList()
 
 	return (
-		<main className={flex({ direction: "column", align: "center", gap: "12" })}>
-			<h1 className={css({ textStyle: "pageHeading", color: "yellow.200" })}>
-				Pokedex
-			</h1>
+		<main className={styles.container}>
+			<h1 className={styles.pageHeading}>Pokedex</h1>
 
-			<div
-				className={flex({
-					wrap: "wrap",
-					justify: "flex-start",
-					maxWidth: "64rem",
-					gap: "1rem",
-				})}
-			>
+			<div className={styles.grid}>
 				{pokemonList.results.map((pokemon, index) => (
 					<ListItem
 						key={pokemon.name}
@@ -36,4 +27,24 @@ export default async function Home() {
 			</div>
 		</main>
 	)
+}
+
+const styles = {
+	container: flex({
+		direction: "column",
+		align: "center",
+		gap: "12",
+	}),
+
+	grid: flex({
+		wrap: "wrap",
+		justify: "flex-start",
+		maxWidth: "64rem",
+		gap: "1rem",
+	}),
+
+	pageHeading: css({
+		textStyle: "pageHeading",
+		color: "yellow.200",
+	}),
 }
