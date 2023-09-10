@@ -2,6 +2,7 @@
 
 import { css } from "@/pokestyle/css"
 import { flex } from "@/pokestyle/patterns"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import useSWR from "swr"
 import { api } from "../api"
@@ -9,12 +10,17 @@ import { ListItem } from "./ListItem"
 
 interface Props {
 	url: string
+	page: number
 }
 
-export function DynamicResultPage({ url }: Props) {
+export function DynamicResultPage({ url, page }: Props) {
+	const router = useRouter()
+	const searchParams = useSearchParams()
 	const { data, isLoading } = useSWR(url, api.getPokemonList)
 
-	const [showNextPage, setShowNextPage] = useState(false)
+	const currentPage = parseInt(searchParams.get("page") ?? "0")
+
+	const [showNextPage, setShowNextPage] = useState(currentPage >= page)
 
 	const loadMoreTriggerRef = useRef<HTMLAnchorElement>(null)
 
@@ -24,6 +30,14 @@ export function DynamicResultPage({ url }: Props) {
 		const observer = new IntersectionObserver((entries) => {
 			if (entries[0].isIntersecting) {
 				setShowNextPage(true)
+
+				// Update the URL to reflect the current page, so that the user can navigate back to this page
+				// through history and still have all list items loaded and rendered that were there before.
+				// Refreshing the page will still blow the whole data cache away. We'd need to add some server-side
+				// preloading of subsequent pages to fix that.
+				const url = new URL(window.location.href)
+				url.searchParams.set("page", page.toString())
+				router.replace(url.toString(), { scroll: false })
 			}
 		})
 
@@ -32,7 +46,7 @@ export function DynamicResultPage({ url }: Props) {
 		return () => {
 			observer.disconnect()
 		}
-	}, [data])
+	}, [page, data, router])
 
 	if (isLoading) return <LoadingIndicator />
 	if (!data) return null
@@ -50,7 +64,9 @@ export function DynamicResultPage({ url }: Props) {
 				/>
 			))}
 
-			{showNextPage && data.next && <DynamicResultPage url={data.next} />}
+			{showNextPage && data.next && (
+				<DynamicResultPage url={data.next} page={page + 1} />
+			)}
 		</>
 	)
 }

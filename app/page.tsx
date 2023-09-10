@@ -23,7 +23,9 @@ export default async function Home() {
 					/>
 				))}
 
-				{pokemonList.next && <DynamicResultPage url={pokemonList.next} />}
+				{pokemonList.next && (
+					<DynamicResultPage page={1} url={pokemonList.next} />
+				)}
 			</div>
 		</main>
 	)
