@@ -29,6 +29,15 @@ export default defineConfig({
 				},
 			},
 		},
+		textStyles: {
+			pageHeading: {
+				description: "The main heading for the page",
+				value: {
+					fontSize: "4rem",
+					fontWeight: "900",
+				},
+			},
+		},
 	},
 
 	// The output directory for your css system

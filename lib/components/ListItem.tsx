@@ -20,12 +20,31 @@ export const ListItem = forwardRef<HTMLAnchorElement, Props>(
 				href={`/${id}`}
 				className={css({
 					bgGradient: "to-br",
-					gradientFrom: "#fff5",
-					gradientTo: "#fff2",
+					gradientFrom: "#ffffff3a",
+					gradientTo: "#ffffff08",
 					borderRadius: "2xl",
+
+					textDecorationThickness: "3px",
+					textDecorationColor: "yellow.200",
+
+					"&:hover": {
+						textDecorationLine: "underline",
+						gradientFrom: "#ffffff44",
+						gradientTo: "#ffffff14",
+					},
 				})}
 			>
-				<span className={css({})}>{name}</span>
+				<h2
+					className={css({
+						color: "neutral.100",
+						fontWeight: "600",
+						textTransform: "capitalize",
+						ml: "1rem",
+						mt: "0.5rem",
+					})}
+				>
+					{name}
+				</h2>
 
 				<Image
 					src={getImageUrlFromId(id)}

@@ -1,3 +1,4 @@
+import { css, cx } from "@/pokestyle/css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { PropsWithChildren } from "react"
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
 				<link rel="icon" type="image/png" href="/favicon.png" />
 			</head>
 
-			<body className={inter.className}>{children}</body>
+			<body className={cx(inter.className, css({ bg: "red.400" }))}>
+				{children}
+			</body>
 		</html>
 	)
 }
