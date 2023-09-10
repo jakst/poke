@@ -4,10 +4,10 @@ import { getImageUrlFromPokemonDetailsUrl } from "../getPokemonAvatarUrl"
 interface Props {
 	name: string
 	detailsUrl: string
-	priority: boolean
+	priority?: boolean
 }
 
-export function ListItem({ name, detailsUrl, priority }: Props) {
+export function ListItem({ name, detailsUrl, priority = false }: Props) {
 	return (
 		<div>
 			{name}

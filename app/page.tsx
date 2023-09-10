@@ -1,4 +1,5 @@
 import { api } from "@/lib/api"
+import { DynamicResultPage } from "@/lib/components/DynamicResultPage"
 import { ListItem } from "@/lib/components/ListItem"
 import { flex } from "@/pokestyle/patterns"
 
@@ -26,6 +27,8 @@ export default async function Home() {
 						priority={index < 10}
 					/>
 				))}
+
+				{pokemonList.next && <DynamicResultPage url={pokemonList.next} />}
 			</div>
 		</main>
 	)

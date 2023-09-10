@@ -16,8 +16,9 @@ async function get<ResultSchema extends z.ZodSchema>(
 	return resultSchema.parse(await response.json())
 }
 
-const getPokemonList = () =>
-	get("https://pokeapi.co/api/v2/pokemon", pokemonListResultSchema)
+const getPokemonList = (
+	url = `https://pokeapi.co/api/v2/pokemon?offset=0&limit=20`,
+) => get(url, pokemonListResultSchema)
 
 const getPokemonDetails = (url: string) => get(url, pokemonDetailsResultSchema)
 
